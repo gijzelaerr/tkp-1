@@ -13,6 +13,7 @@ from tkp.utility.coordinates import WCS
 
 logger = logging.getLogger(__name__)
 
+
 class FitsImage(DataAccessor):
     """
     Use PyFITS to pull image data out of a FITS file.
