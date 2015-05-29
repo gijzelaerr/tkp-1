@@ -11,27 +11,24 @@ import utils
 FIT_PARAMS = ('peak', 'xbar', 'ybar', 'semimajor', 'semiminor', 'theta')
 
 def moments(data, beam, threshold=0):
-    """Calculate source positional values using moments
-
-    Args:
-
-        data (numpy.ndarray): Actual 2D image data
-
-        beam (3-tuple): beam (psf) information, with semi-major and
-            semi-minor axes
-
-    Returns:
-
-        (dict): peak, total, x barycenter, y barycenter, semimajor
-            axis, semiminor axis, theta
-
-    Raises:
-
-        ValueError (in case of NaN in input)
+    """
+    Calculate source positional values using moments
 
     Use the first moment of the distribution is the barycenter of an
     ellipse. The second moments are used to estimate the rotation angle
     and the length of the axes.
+
+    Args:
+        data (numpy.ndarray): Actual 2D image data
+        beam (3-tuple): beam (psf) information, with semi-major and semi-minor
+            axes
+
+    Returns:
+        dict: peak, total, x barycenter, y barycenter, semimajor axis,
+            semiminor axis, theta
+
+    Raises:
+        ValueError: in case of NaN in input.
     """
 
     # Are we fitting a -ve or +ve Gaussian?
@@ -114,34 +111,25 @@ def moments(data, beam, threshold=0):
 def fitgaussian(pixels, params, fixed=None, maxfev=0):
     """Calculate source positional values by fitting a 2D Gaussian
 
+    Perform a least squares fit to an elliptical Gaussian. If a dict called
+    fixed is passed in, then parameters specified within the dict with the same
+    names as fit_params (below) will be "locked" in the fitting process.
+
     Args:
-
         pixels (numpy.ma.MaskedArray): Pixel values (with bad pixels masked)
-
-        params (dict): initial fit parameters (possibly estimated
-            using the moments() function, above)
+        params (dict): initial fit parameters (possibly estimated using the
+            moments() function, above)
 
     Kwargs:
-
-        fixed (dict): parameters & their values to be kept frozen (ie, not
-            fitted)
-
+        fixed (dict): parameters & their values to be kept frozen (ie, not fitted)
         maxfev (int): maximum number of calls to the error function
 
     Returns:
-
-        (dict): peak, total, x barycenter, y barycenter, semimajor,
-            semiminor, theta (radians)
+        dict: peak, total, x barycenter, y barycenter, semimajor, semiminor,
+            theta (radians)
 
     Raises:
-
-        ValueError (in case of a bad fit)
-
-    Perform a least squares fit to an elliptical Gaussian.
-
-    If a dict called fixed is passed in, then parameters specified within the
-    dict with the same names as fit_params (below) will be "locked" in the
-    fitting process.
+        ValueError: in case of a bad fit
     """
     fixed = fixed or {}
 

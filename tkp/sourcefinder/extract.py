@@ -629,7 +629,7 @@ def source_profile_and_errors(data, threshold, noise, beam, fixed=None, residual
 
     Returns:
 
-        (tuple): a populated ParamSet, and a residual array.
+        tuple: a populated ParamSet, and a residual array.
     """
 
     if fixed is None:

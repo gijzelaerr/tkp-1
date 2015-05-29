@@ -349,29 +349,22 @@ class ImageData(object):
         """
         Kick off conventional (ie, RMS island finding) source extraction.
 
-        Kwargs:
-
+        Args:
             det (float): detection threshold, as a multiple of the RMS
                 noise. At least one pixel in a source must exceed this
                 for it to be regarded as significant.
-
             anl (float): analysis threshold, as a multiple of the RMS
                 noise. All the pixels within the island that exceed
                 this will be used when fitting the source.
-
-            noisemap (numpy.ndarray):
-
-            bgmap (numpy.ndarray):
-
+            noisemap (numpy.ndarray): the noise map
+            bgmap (numpy.ndarray): the background map
             deblend_nthresh (int): number of subthresholds to use for
                 deblending. Set to 0 to disable.
-
             force_beam (bool): force all extractions to have major/minor axes
                 equal to the restoring beam
 
         Returns:
-
-             (..utility.containers.ExtractionResults):
+             utility.containers.ExtractionResults: the extraction results
         """
 
         if anl > det:
@@ -611,7 +604,7 @@ class ImageData(object):
         This function wraps around fit_to_point().
 
         Args:
-            positions (list of (RA, Dec) tuples): Positions to be fit,
+            positions (list): list of (RA, Dec) tuples. Positions to be fit,
                 in decimal degrees.
             boxsize: See :py:func:`fit_to_point`
             threshold: as above.
@@ -762,31 +755,26 @@ class ImageData(object):
         """
         Run Python-based source extraction on this image.
 
+        This is described in detail in the "Source Extraction System" document
+        by John Swinbank, available from TKP svn.
+
         Args:
-
             detectionthresholdmap (numpy.ndarray):
-
             analysisthresholdmap (numpy.ndarray):
-
             deblend_nthresh (int): number of subthresholds for deblending. 0
                 disables.
-
             force_beam (bool): force all extractions to have major/minor axes
                 equal to the restoring beam
-
             labelled_data (numpy.ndarray): labelled island map (output of
-            numpy.ndimage.label()). Will be calculated automatically if not
-            provided.
-
+                numpy.ndimage.label()). Will be calculated automatically if not
+                provided.
             labels (list): list of labels in the island map to use for
             fitting.
 
         Returns:
+            utility.containers.ExtractionResults:
 
-            (..utility.containers.ExtractionResults):
 
-        This is described in detail in the "Source Extraction System" document
-        by John Swinbank, available from TKP svn.
         """
         # Map our chunks onto a list of islands.
         island_list = []

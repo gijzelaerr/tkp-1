@@ -164,7 +164,7 @@ class DBObject(object):
 
         Raises:
 
-            AttributeError if a required data keyword is missing.
+            AttributeError: if a required data keyword is missing.
 
         """
         if self._id is not None:
@@ -331,7 +331,7 @@ class DataSet(DBObject):
     def runcat_entries(self):
         """
         Returns:
-            a list of dictionarys:
+            list: a list of dictionarys
             representing rows in runningcatalog,
             for all sources belonging to this dataset
 
@@ -536,7 +536,7 @@ class ExtractedSource(DBObject):
         for this source.
 
         Returns:
-            (list) list of 5-tuples, each tuple being:
+            list: list of 5-tuples, each tuple being:
                 - observation start time as a datetime.datetime object
                 - integration time (float)
                 - integrated flux (float)

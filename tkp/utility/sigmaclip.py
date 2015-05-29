@@ -12,24 +12,17 @@ def clip(data, mean, sigma, siglow, sighigh, indices=None):
     """Perform kappa-sigma clipping of data around mean
 
     Args:
-
         data (numpy.ndarray): N-dimensional array of values
-
         mean (float): value around which to clip (does not have to be the mean)
-
         sigma (float): sigma-value for clipping
-
         siglow (float): lower kappa clipping values
-
         sighigh (float): higher kappa clipping values
 
     Kwargs:
-
         indices (numpy.ndarray): data selection by indices
 
     Returns:
-
-        (numpy.ndarray) indices of non-clipped data
+        numpy.ndarray: indices of non-clipped data
 
     """
 
@@ -126,31 +119,24 @@ def sigmaclip(data, errors=None, niter=0, siglow=3., sighigh=3.,
     sample standard deviations from mean.
 
     Args:
-
         data (numpy.ndarray): Numpy array containing data values.
 
     Kwargs:
-
         errors (numpy.ndarray, None): Errors associated with the data
             values. If None, unweighted mean and standard deviation
             are used in calculations.
-
         niter (int): Number of iterations to calculate mean & standard
             deviation, and reject outliers, If niter is negative,
             iterations will continue until no more clipping occurs or
             until abs('niter') is reached, whichever is reached first.
-
         siglow (float): Kappa multiplier for standard deviation. Std *
             siglow defines the value below which data are rejected.
-
         sighigh (float): Kappa multiplier for standard deviation. Std *
             sighigh defines the value above which data are rejected.
-
         use_median (bool): Use median of data instead of mean.
 
     Returns:
-
-        (2-tuple): boolean numpy array of indices indicating which
+        tuple: boolean numpy array of indices indicating which
             elements are clipped (False), with the same shape as the
             input; number of iterations
 

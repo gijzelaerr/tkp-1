@@ -29,7 +29,7 @@ def dbimage_from_accessor(dataset, dataccessor, extraction_radius):
 
     Returns:
 
-        (dataset.Image): a dataset.Image instance.
+        db.orm.Image: a tkp.db.orm.Image instance.
     """
     if dataccessor.freq_eff is None or dataccessor.freq_bw is None:
         raise ValueError("cannot create database image: frequency information missing")
@@ -49,7 +49,7 @@ def sourcefinder_image_from_accessor(image, **args):
 
     Returns:
 
-        (sourcefinder.ImageData): a source finder image.
+        ImageData: a source finder image.
     """
     image = ImageData(image.data, image.beam, image.wcs, **args)
     return image
